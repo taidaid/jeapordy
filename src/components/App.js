@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setCategories, pickCategory } from "../actions/actions";
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     if (this.props.categories.length === 0) {
       fetch("http://jservice.io/api/categories?count=20")
@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("App props", this.props);
+    // console.log("App props", this.props);
     return (
       <div>
         <h2>JEAPORDY!</h2>

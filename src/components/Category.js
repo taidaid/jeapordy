@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Clue from "./Clue";
 
-class Category extends Component {
+export class Category extends Component {
   constructor() {
     super();
     this.state = {
@@ -19,17 +19,27 @@ class Category extends Component {
   }
 
   render() {
-    console.log("category props", this.props);
-    console.log("category state", this.state);
+    // console.log("category props", this.props);
+    // console.log("category state", this.state);
+    return (
+      <div>
+        <h2>{this.props.category.title}</h2>
+        {this.state.clues.map(clue => {
+          return <Clue key={clue.id} clue={clue} />;
+        })}
+      </div>
+    );
+  }
+}
+
+export class LinkedCategory extends Component {
+  render() {
     return (
       <div>
         <Link to="/">
           <h4 className="link-home">Home</h4>
         </Link>
-        <h2>{this.props.category.title}</h2>
-        {this.state.clues.map(clue => {
-          return <Clue key={clue.id} clue={clue} />;
-        })}
+        <Category category={this.props.category} />
       </div>
     );
   }
@@ -42,4 +52,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   null
-)(Category);
+)(LinkedCategory);
